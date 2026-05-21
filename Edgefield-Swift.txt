@@ -1,0 +1,31 @@
+Concept (Refined for Swift Playgrounds)
+🧠 Core Experience Loop
+Sketch → Interpret → Build → Play → Improve → (loop)
+
+But implemented as a single continuous playful flow — not separate screens.
+
+Swift Playgrounds Architecture (Simple + Powerful)
+
+App Structure
+
+Core
+ ├── AppState (loop engine)
+ ├── CreativePhase (state machine)
+
+Experience Layers
+ ├── SketchStudioView (PencilKit)
+ ├── IdeaInterpreter (rules)
+ ├── BuildPlaygroundView (SceneKit)
+ ├── InteractionSandbox (physics/play)
+ ├── FeedbackEngine (rewards)
+ ├── PromptEngine (guided creativity)
+ └── UXMagic (animations + transitions)
+
+MVP Scope (Perfect for competition)
+Must-have:
+✅ Sketch (PencilKit)
+✅ Interpret (simple rule-based)
+✅ Build (1–2 structures)
+✅ Play (basic physics)
+✅ Feedback (animations + sound)
+✅ Prompt (1–2 ideas)

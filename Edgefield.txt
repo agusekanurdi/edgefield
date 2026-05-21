@@ -1,0 +1,97 @@
+*** Architecture ***
+
+An app for kids with focus on fun building architecture:
+Sketching -> Blueprint -> Building using building blocks -> Interacts -> Improve (back to sketching)
+
+Separate “Experience” from “Platform”
+
+Mobile App → talks via API → Backend
+
+Focus:
+- Kid-centric experiences
+- Fluid creative loop
+- Interpretive + playful
+- Interaction sandbox
+- Built-in rewards loop
+- Creativity prompts
+
+=== Layers === 
+
+1. Core Experience Layer
+
+Option 1:
+Unity (C#)
+ ├── Sketch Module (2D drawing input)
+ ├── Blueprint Translator (logic layer)
+ ├── Building System (block assembly)
+ ├── Physics Engine (interaction)
+ ├── Feedback Loop (iteration)
+ └── UX Layer (child-friendly interactions)
+
+Option 2 using Swift:
+Creative Loop Engine (State Machine)
+ ├── Sketch Studio (PencilKit + smart guidance)
+ ├── Idea Interpreter (playful shape → meaning)
+ ├── Build Playground (3D blocks + snapping)
+ ├── Interaction Sandbox (toy physics)
+ ├── Feedback & Rewards Engine (motivation loop)
+ ├── Guided Creativity Layer (prompts & stories)
+ └── UX Magic Layer (animation, sound, delight)
+
+Key design:
+- Keep this self-contained
+- Treat it as product core IP
+- Avoid over-dependency on external plugins
+
+2. Platform & Backend Layer
+
+Cloud Backend
+ ├── User profiles
+ ├── Design storage (sketch → blueprint → object graph)
+ ├── Learning progress
+ ├── Content management
+ ├── AI services
+ └── Analytics
+
+Suggested using serverless AWS stack for API, Structured DB and File/object storage (design data).
+
+3. AI Layer 
+
+Long-term advantage here:
+- Sketch -> Shape recognition
+- Blueprint -> Convert to structured model
+- Build -> Suggest improvements
+- Interaction -> Detect stability / issues
+- Iterate -> Personalized learning feedback
+
+*** Development Strategy ***
+
+=== Phase 1 — MVP ===
+
+Focus ONLY on core loop:
+✅ Sketch
+✅ Convert to simple blueprint
+✅ Build with blocks
+✅ Basic interaction
+✅ Save/load designs
+
+=== Phase 2 — Engagement Layer ===
+
+Challenges
+Rewards
+Guided lessons
+Simple AI suggestions
+
+=== Phase 3 — Platform Expansion ===
+
+Sharing creations
+Multiplayer collaboration
+Teacher dashboards
+Advanced AI assistance
+
+=== Phase 4 — Premium Features ===
+
+AR mode (place designs in real world)
+Advanced physics
+Real architectural constraints
+Marketplace (user designs)
