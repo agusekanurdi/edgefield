@@ -132,12 +132,12 @@ Still inside ContentView.swift
 
 ✅ Paste this:
 
-let ideas = ["house", "playground", "bridge"]
+let ideas = ["house", "playground", "cafe", "shop"]
 
 func interpretDrawing() {
     let strokeCount = appState.drawing.strokes.count
 
-    if strokeCount <= 2 {
+    if strokeCount <= 5 {
         appState.idea = "house"
     } else {
         appState.idea = ideas.randomElement()!
@@ -169,13 +169,15 @@ Still in ContentView.swift
 func ideaMessage(for idea: String) -> String {
     switch idea {
     case "house":
-        return "🏠 A cozy house!"
+        return "A cozy house!"
     case "playground":
-        return "🎠 A fun playground!"
-    case "bridge":
-        return "🌉 A strong bridge!"
+        return "A fun playground!"
+    case "cafe":
+        return "A fancy cafe!"
+    case "shop":
+        return "An amazing shop!"
     default:
-        return "✨ Something amazing!"
+        return "✨Something amazing!"
     }
 }
 
@@ -186,7 +188,7 @@ Instead of boring text:
 
 You now get:
 
-“🏠 A cozy house!”
+“A cozy house!”
 
 👉 This is very important for kids
 
@@ -199,11 +201,11 @@ Draw something (anything!)
 Tap:
 ✨ Magic Build!
 
-
 You should see:
-🏠 A cozy house
-🎠 A fun playground
-🌉 A strong bridge
+A cozy house
+A fun playground
+A fancy cafe
+An amazing shop
 
 Tap:
 🔁 Try Again
