@@ -1,0 +1,221 @@
+🚀 WEEK 1 — Sketch → Interpret (Core Loop Begins)
+
+🎯 Goal of Week 1
+Draw on screen (PencilKit)
+Press button → interpret drawing
+Show result
+
+👉 This is your first working creative loop
+
+✅ STEP 0 — Where you should be now
+
+You should already have:
+
+✅ Project created in Swift Playgrounds
+✅ ContentView.swift exists
+✅ AppState.swift exists
+
+If yes → continue ✅
+
+🧠 STEP 1 — Confirm your AppState (IMPORTANT)
+Open AppState.swift and make sure it looks exactly like this:
+
+import SwiftUI
+import PencilKit
+
+enum CreativePhase {
+    case sketch
+    case interpret
+}
+
+class AppState: ObservableObject {
+    @Published var phase: CreativePhase = .sketch
+    @Published var drawing: PKDrawing = PKDrawing()
+    @Published var idea: String = ""
+}
+
+✅ What this does (simple explanation)
+
+phase → tells app what screen to show
+drawing → stores what the child drew
+idea → stores the result (house/playground/bridge)
+
+🎨 STEP 2 — Add Sketch Canvas
+
+✅ Create new file
+Tap:
+👉 + → New File → Swift File
+Name it:
+SketchView.swift
+
+✅ Paste this code
+
+import SwiftUI
+import PencilKit
+
+struct SketchView: UIViewRepresentable {
+    @Binding var drawing: PKDrawing
+
+    func makeUIView(context: Context) -> PKCanvasView {
+        let canvas = PKCanvasView()
+        canvas.backgroundColor = .systemBackground
+        canvas.drawingPolicy = .anyInput
+        return canvas
+    }
+
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+        uiView.drawing = drawing
+    }
+}
+
+✅ What this does
+👉 Creates a real drawing canvas (like Notes app)
+👉 Supports finger + Apple Pencil
+
+🧩 STEP 3 — Update ContentView (MAIN SCREEN)
+
+Open ContentView.swift
+
+✅ Replace ENTIRE file with this
+
+import SwiftUI
+import PencilKit
+
+struct ContentView: View {
+    
+    @StateObject var appState = AppState()
+
+    var body: some View {
+        VStack {
+            
+            Text("🏗 Creative Architect")
+                .font(.largeTitle)
+                .padding()
+
+            // STEP A: Sketch Mode
+            if appState.phase == .sketch {
+                
+                SketchView(drawing: $appState.drawing)
+                    .frame(height: 400)
+
+                Button("✨ Magic Build!") {
+                    interpretDrawing()
+                }
+                .padding()
+            }
+            
+            // STEP B: Interpret Mode
+            else if appState.phase == .interpret {
+                
+                VStack(spacing: 20) {
+                    
+                    Text(ideaMessage(for: appState.idea))
+                        .font(.largeTitle)
+
+                    Text("Want to build it?")
+                        .font(.headline)
+
+                    Button("🔁 Try Again") {
+                        appState.drawing = PKDrawing()
+                        appState.phase = .sketch
+                    }
+                }
+                .padding()
+            }
+        }
+    }
+}
+
+🧠 STEP 4 — Add Interpreter Logic
+Still inside ContentView.swift
+👉 Add this BELOW the body
+
+✅ Paste this:
+
+let ideas = ["house", "playground", "bridge"]
+
+func interpretDrawing() {
+    let strokeCount = appState.drawing.strokes.count
+
+    if strokeCount <= 2 {
+        appState.idea = "house"
+    } else {
+        appState.idea = ideas.randomElement()!
+    }
+
+    withAnimation {
+        appState.phase = .interpret
+    }
+}
+``
+
+✅ What this does (very simple)
+
+Counts how many lines the child drew
+Decides:
+
+small drawing → house
+medium → playground
+big → bridge
+
+Moves to next screen
+
+🎉 STEP 5 — Add Friendly Messages
+Still in ContentView.swift
+👉 Add this BELOW interpretDrawing()
+
+✅ Paste this:
+
+func ideaMessage(for idea: String) -> String {
+    switch idea {
+    case "house":
+        return "🏠 A cozy house!"
+    case "playground":
+        return "🎠 A fun playground!"
+    case "bridge":
+        return "🌉 A strong bridge!"
+    default:
+        return "✨ Something amazing!"
+    }
+}
+
+✅ Why this matters
+Instead of boring text:
+
+“You made a house”
+
+You now get:
+
+“🏠 A cozy house!”
+
+👉 This is very important for kids
+
+▶️ STEP 6 — RUN YOUR APP
+Tap Run ▶️
+
+✅ Test it like a kid
+
+Draw something (anything!)
+Tap:
+✨ Magic Build!
+
+
+You should see:
+🏠 A cozy house
+🎠 A fun playground
+🌉 A strong bridge
+
+Tap:
+🔁 Try Again
+
+What Week 1 delivers:
+Sketch → Interpret → Feedback → Reset
+
+👉 That’s your first playable experience
+
+Week 1 success checklist
+✅ Drawing system (real input)
+✅ Logic system (interpretation)
+✅ State system (phase switching)
+✅ Feedback system (kid-friendly messages)
+✅ Loop (try again)

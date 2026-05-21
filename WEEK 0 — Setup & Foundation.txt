@@ -1,0 +1,124 @@
+WEEK 0 — Setup & Foundation (Day 0–2)
+
+🎯 Goal of Week 0
+By the end, you will:
+- Run your first Swift Playgrounds app
+- Understand how your app is structured
+- See something working on screen
+
+✅ Step 1 — Install the right tool
+
+👉 Swift Playgrounds app (iPad or Mac)
+
+Download from App Store
+Choose “New App” → “App” template
+
+✅ Step 2 — Create your first project
+When you open Swift Playgrounds:
+Tap “New App”
+
+Name it:
+Edgefield
+
+You’ll see a project with:
+EdgefieldApp.swift
+ContentView.swift
+Assets
+
+✅ Step 3 — Understand what you're looking at
+🧠 Simplified mental model:
+EdgefieldApp.swift
+→ Entry point (don’t touch yet)
+
+ContentView.swift
+→ YOUR MAIN SCREEN (you’ll work here most)
+
+Default code looks like:
+struct ContentView: View {
+    var body: some View {
+        Text("Hello, world!")
+    }
+}
+
+✅ Step 4 — Replace with your first UI
+Update ContentView.swift:
+
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Text("🏗 Edgefield")
+                .font(.largeTitle)
+                .padding()
+
+            Text("Draw something to start building!")
+                .font(.headline)
+        }
+    }
+}
+
+✅ Run it
+Tap ▶️
+👉 You now have your first app screen
+✅ That’s already a milestone
+
+✅ Step 5 — Add AppState (your core engine)
+
+Create a new file:
+👉 Tap + → New File → Swift File
+Name: AppState.swift
+
+Add:
+
+import SwiftUI
+import PencilKit
+
+enum CreativePhase {
+    case sketch
+    case interpret
+}
+
+class AppState: ObservableObject {
+    @Published var phase: CreativePhase = .sketch
+    @Published var drawing: PKDrawing = PKDrawing()
+    @Published var idea: String = ""
+}
+
+🧠 What this does
+- Controls app flow
+- Stores drawing
+- Stores interpreted idea
+👉 This is your engine
+
+✅ Step 6 — Connect AppState to UI
+
+Update ContentView.swift:
+
+struct ContentView: View {
+    @StateObject var appState = AppState()
+
+    var body: some View {
+        VStack {
+            Text("🏗 Creative Architect")
+                .font(.largeTitle)
+
+            if appState.phase == .sketch {
+                Text("Draw your idea!")
+            } else {
+                Text("You made a \(appState.idea)!")
+            }
+        }
+        .padding()
+    }
+}
+
+✅ Run again
+👉 You now have your first state-driven UI
+
+🎉 WEEK 0 COMPLETE
+
+You now have:
+✅ Working Swift app
+✅ State machine (very important)
+✅ Basic UI
